@@ -1,0 +1,17 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="title">BOX模拟器</view>
+  <view>
+    <text>阵营: </text>
+    <checkbox-group>
+      <label class="checkbox"><checkbox value="1"/><text space="emsp">光辉 </text></label>
+      <label class="checkbox"><checkbox value="2"/><text space="emsp">起源 </text></label>
+    </checkbox-group>
+  </view>
+  <view>
+    <text>职业: </text>
+  </view>
+  <view>
+    <text>类型: </text>
+  </view>
+</view>
