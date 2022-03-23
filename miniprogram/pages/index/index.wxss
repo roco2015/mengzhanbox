@@ -1,7 +1,33 @@
 /**index.wxss**/
-
 page {
   padding-top: 54rpx;
   background-color: #f6f6f6;
   padding-bottom: 60rpx;
+}
+.container {
+  padding: 10rpx;
+}
+.condition-box {
+  width: 100%;
+}
+.condition-box .title {
+  display: flex;
+}
+.condition-box .title-text {
+  width: 3rem;
+}
+.condition-box .title-label {
+  margin-right: 20rpx;
+}
+.condition-box .content {
+  flex: 1;
+  border: 1px solid #bbb;
+}
+.condition-box .content.checkbox {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.hero-box {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }

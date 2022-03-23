@@ -1,17 +1,33 @@
 <!--index.wxml-->
 <view class="container">
   <view class="title">BOX模拟器</view>
-  <view>
-    <text>阵营: </text>
-    <checkbox-group>
-      <label class="checkbox"><checkbox value="1"/><text space="emsp">光辉 </text></label>
-      <label class="checkbox"><checkbox value="2"/><text space="emsp">起源 </text></label>
+  <view class="condition-box">
+    <view class="title">
+      <text class="title-text">阵营: </text>
+      <checkbox-group bindchange="handleChangeCamp">
+        <label wx:for="{{bothOrAndList}}" wx:key="code" class="title-label"><checkbox value="{{item.code}}"/>{{item.label}}</label>
+      </checkbox-group>
+    </view>
+    <checkbox-group class="content checkbox" bindchange="handleChangeCamp">
+      <label wx:for="{{campList}}" wx:key="id"><checkbox value="{{item.id}}"/>{{item.name}}</label>
     </checkbox-group>
   </view>
-  <view>
-    <text>职业: </text>
+  <view class="condition-box">
+    <text class="title">职业: </text>
+    <checkbox-group class="content checkbox">
+      <label wx:for="{{careerList}}" wx:key="id"><checkbox value="{{item.id}}"/>{{item.name}}</label>
+    </checkbox-group>
   </view>
-  <view>
-    <text>类型: </text>
+  <view class="condition-box">
+    <text class="title">类型: </text>
+    <checkbox-group class="content checkbox">
+      <label wx:for="{{heroTypeList}}" wx:key="id"><checkbox value="{{item.id}}"/>{{item.name}}</label>
+    </checkbox-group>
+  </view>
+  <view>英雄</view>
+  <view class="hero-box">
+    <block wx:for="{{heroList}}" wx:key="id">
+      <view wx:if="{{item.campVisible}}">{{item.name}}</view>
+    </block>
   </view>
 </view>
