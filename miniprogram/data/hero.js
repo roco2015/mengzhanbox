@@ -168,9 +168,11 @@ export const heroOriginList = heroOrigin.map(item => {
     id: item.id,
     name: item.name,
     rare: rareMap[item.rare],
+    img: `/images/hero/${item.name}.png`,
     camp: item.camp.map(tmp => campMap[tmp]),
     career: item.career.map(tmp => careerMap[tmp]),
     campVisible: true,
+    careerVisible: true,
   }
 })
 

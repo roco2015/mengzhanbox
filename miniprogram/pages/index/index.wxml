@@ -1,22 +1,43 @@
 <!--index.wxml-->
 <view class="container">
   <view class="title">BOX模拟器</view>
-  <view class="condition-box">
+  <view class="condition-box {{open.camp ? 'condition-show' : ''}}">
     <view class="title">
-      <text class="title-text">阵营: </text>
-      <checkbox-group bindchange="handleChangeCamp">
-        <label wx:for="{{bothOrAndList}}" wx:key="code" class="title-label"><checkbox value="{{item.code}}"/>{{item.label}}</label>
+      <text class="text">阵营: </text>
+      <radio-group wx:if="{{open.camp}}" bindchange="handleChangeCampType">
+        <label wx:for="{{bothOrAndList}}" wx:key="code" class="label"><radio value="{{item.code}}" checked="{{item.code===selectedCampType}}"/>{{item.label}}</label>
+      </radio-group>
+      <block wx:if="{{!open.camp}}">
+        <image wx:for="{{selectedCamps}}" wx:key="item" class="camp-icon" mode="aspectFill" src="{{campMap[item].img}}"></image>
+      </block>
+      <mp-icon icon="arrow" color="black" size="{{15}}" class="arrow {{open.camp ? 'unfold' : ''}}" data-type="camp" bindtap="toggle"></mp-icon>
+    </view>
+    <view class="content">
+      <checkbox-group class="checkbox" bindchange="handleChangeCamp">
+        <label wx:for="{{campList}}" wx:key="id" class="label">
+          <checkbox value="{{item.id}}"/>{{item.name}}<image class="camp-icon" mode="aspectFill" src="{{item.img}}"></image>
+        </label>
       </checkbox-group>
     </view>
-    <checkbox-group class="content checkbox" bindchange="handleChangeCamp">
-      <label wx:for="{{campList}}" wx:key="id"><checkbox value="{{item.id}}"/>{{item.name}}</label>
-    </checkbox-group>
   </view>
-  <view class="condition-box">
-    <text class="title">职业: </text>
-    <checkbox-group class="content checkbox">
-      <label wx:for="{{careerList}}" wx:key="id"><checkbox value="{{item.id}}"/>{{item.name}}</label>
-    </checkbox-group>
+  <view class="condition-box {{open.career ? 'condition-show' : ''}}">
+    <view class="title">
+      <text class="text">职业: </text>
+      <radio-group wx:if="{{open.career}}" bindchange="handleChangeCareerType">
+        <label wx:for="{{bothOrAndList}}" wx:key="code" class="label"><radio value="{{item.code}}" checked="{{item.code===selectedCareerType}}"/>{{item.label}}</label>
+      </radio-group>
+      <block wx:if="{{!open.career}}">
+        <image wx:for="{{selectedCareers}}" wx:key="item" class="career-icon" mode="aspectFill" src="{{careerMap[item].img}}"></image>
+      </block>
+      <mp-icon icon="arrow" color="black" size="{{15}}" class="arrow {{open.career ? 'unfold' : ''}}" data-type="career" bindtap="toggle"></mp-icon>
+    </view>
+    <view class="content">
+      <checkbox-group class="checkbox" bindchange="handleChangeCareer">
+        <label wx:for="{{careerList}}" wx:key="id" class="label">
+          <checkbox value="{{item.id}}"/>{{item.name}}<image class="career-icon" mode="aspectFill" src="{{item.img}}"></image>
+        </label>
+      </checkbox-group>
+    </view>
   </view>
   <view class="condition-box">
     <text class="title">类型: </text>
@@ -24,10 +45,26 @@
       <label wx:for="{{heroTypeList}}" wx:key="id"><checkbox value="{{item.id}}"/>{{item.name}}</label>
     </checkbox-group>
   </view>
+  <view>我的盒子</view>
+  <view class="hero-box">
+    <block wx:for="{{heroList}}" wx:key="id">
+      <view wx:if="{{item.selected}}" class="hero-card" data-index="{{index}}" data-hero="{{item}}" bindtap="handleTapHero">
+        <image class="avatar" mode="aspectFill" src="{{item.img}}"></image>
+        <view>
+          <image wx:for="{{item.camp}}" wx:key="item" class="icon" mode="aspectFill" src="{{campMap[item].img}}"></image>
+        </view>
+      </view>
+    </block>
+  </view>
   <view>英雄</view>
   <view class="hero-box">
     <block wx:for="{{heroList}}" wx:key="id">
-      <view wx:if="{{item.campVisible}}">{{item.name}}</view>
+      <view wx:if="{{item.campVisible && item.careerVisible}}" class="hero-card" data-index="{{index}}" data-hero="{{item}}" bindtap="handleTapHero">
+        <image class="avatar" mode="aspectFill" src="{{item.img}}"></image>
+        <view>
+          <image wx:for="{{item.camp}}" wx:key="item" class="icon" mode="aspectFill" src="{{campMap[item].img}}"></image>
+        </view>
+      </view>
     </block>
   </view>
 </view>

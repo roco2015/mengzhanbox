@@ -5,29 +5,93 @@ page {
   padding-bottom: 60rpx;
 }
 .container {
+  position: relative;
   padding: 10rpx;
 }
 .condition-box {
   width: 100%;
+  margin-bottom: 10rpx;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 10rpx;
+  overflow: hidden;
 }
 .condition-box .title {
   display: flex;
+  align-items: center;
 }
-.condition-box .title-text {
+.condition-box .title .text {
   width: 3rem;
 }
-.condition-box .title-label {
+.condition-box .title .label {
   margin-right: 20rpx;
+}
+.condition-box .title .camp-icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+.condition-box .title .career-icon {
+  width: 42rpx;
+  height: 42rpx;
+  padding: 0 4rpx;
+}
+.condition-box .title .arrow {
+  position: absolute;
+  right: 30rpx;
+  transition: transform 0.2s ease-out;
+}
+.condition-box .title .arrow.unfold {
+  transform: rotate(90deg);
 }
 .condition-box .content {
   flex: 1;
-  border: 1px solid #bbb;
+  height: 0;
+  overflow: hidden;
 }
-.condition-box .content.checkbox {
+.condition-box .content .checkbox {
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(4, 1fr);
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: 0.2s;
+}
+.condition-box .content .label {
+  display: flex;
+  height: 50rpx;
+  align-items: center;
+}
+.condition-box .content .label .camp-icon {
+  width: 50rpx;
+  height: 100%;
+}
+.condition-box .content .label .career-icon {
+  width: 42rpx;
+  height: 42rpx;
+  padding: 4rpx 4rpx 4rpx 8rpx;
+}
+.condition-box.condition-show .content {
+  height: auto;
+}
+.condition-box.condition-show .content .checkbox {
+  opacity: 1;
+  transform: translateY(0);
 }
 .hero-box {
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(5, 1fr);
+}
+.hero-box .hero-card {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  height: 200rpx;
+  border: 1px solid #ccc;
+}
+.hero-box .hero-card .avatar {
+  width: 100%;
+}
+.hero-box .hero-card .icon {
+  width: 45rpx;
+  height: 45rpx;
 }
